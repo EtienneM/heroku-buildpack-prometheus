@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+set -e
 
 BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
@@ -8,10 +10,10 @@ BUILDPACK_DIR="$(readlink -f ${basedir}/..)"
 source ${BUILDPACK_DIR}/lib/common.sh
 
 if [ -n "$BUILDPACK_DEBUG" ]; then
-  set -x
+    set -x
 fi
 
-PROMETHEUS_VERSION=2.14.0
+PROMETHEUS_VERSION=${PROMETHEUS_VERSION:-2.14.0}
 
 arrow() {
   echo '----->' "$@"
