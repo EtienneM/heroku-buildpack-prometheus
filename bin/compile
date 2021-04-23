@@ -11,31 +11,31 @@ if [ -n "$BUILDPACK_DEBUG" ]; then
   set -x
 fi
 
-VERSION=2.14.0
+PROMETHEUS_VERSION=2.14.0
 
 arrow() {
   echo '----->' "$@"
 }
 
 fetch_prometheus() {
-  if [ ! -f $CACHE_DIR/prometheus-${VERSION} ]; then
-    arrow "Installing v${VERSION} of Prometheus"
-    wget --quiet -O prometheus.tar.gz https://github.com/prometheus/prometheus/releases/download/v${VERSION}/prometheus-${VERSION}.linux-amd64.tar.gz
+  if [ ! -f $CACHE_DIR/prometheus-${PROMETHEUS_VERSION} ]; then
+    arrow "Installing v${PROMETHEUS_VERSION} of Prometheus"
+    wget --quiet -O prometheus.tar.gz https://github.com/prometheus/prometheus/releases/download/v${PROMETHEUS_VERSION}/prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz
     tar -xzf prometheus.tar.gz
 
     rm -f $CACHE_DIR/prometheus-* || true
     rm -f $CACHE_DIR/promtool-* || true
-    mv prometheus-${VERSION}.linux-amd64/prometheus $CACHE_DIR/prometheus-${VERSION}
-    mv prometheus-${VERSION}.linux-amd64/promtool $CACHE_DIR/promtool-${VERSION}
+    mv prometheus-${PROMETHEUS_VERSION}.linux-amd64/prometheus $CACHE_DIR/prometheus-${PROMETHEUS_VERSION}
+    mv prometheus-${PROMETHEUS_VERSION}.linux-amd64/promtool $CACHE_DIR/promtool-${PROMETHEUS_VERSION}
   else
-    arrow "Prometheus v${VERSION} found in cache"
+    arrow "Prometheus v${PROMETHEUS_VERSION} found in cache"
   fi
 }
 
 install_prometheus() {
   mkdir -p "$BUILD_DIR/bin"
-  cp $CACHE_DIR/prometheus-${VERSION} $BUILD_DIR/bin/prometheus
-  cp $CACHE_DIR/promtool-${VERSION} $BUILD_DIR/bin/promtool
+  cp $CACHE_DIR/prometheus-${PROMETHEUS_VERSION} $BUILD_DIR/bin/prometheus
+  cp $CACHE_DIR/promtool-${PROMETHEUS_VERSION} $BUILD_DIR/bin/promtool
 }
 
 fetch_prometheus
