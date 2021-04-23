@@ -6,6 +6,11 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 #ENV_DIR=$3
 
+
+if [ -n "$BUILDPACK_DEBUG" ]; then
+  set -x
+fi
+
 arrow() {
   echo '----->' "$@"
 }
