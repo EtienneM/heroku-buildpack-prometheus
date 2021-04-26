@@ -46,9 +46,9 @@ export_env_dir "$ENV_DIR"
 fetch_prometheus
 install_prometheus
 
-# mkdir -p $BUILD_DIR/.profile.d
-#
-# if [ ! -f $BUILD_DIR/.profile.d/prometheus.sh ]; then
-#   arrow "Creating .profile.d/prometheus.sh ..."
-#   echo "export PATH=\$PATH:$BUILD_DIR/bin" > $BUILD_DIR/.profile.d/prometheus.sh
-# fi
+mkdir -p $BUILD_DIR/.profile.d
+
+if [ ! -f $BUILD_DIR/.profile.d/prometheus.sh ]; then
+  arrow "Creating .profile.d/prometheus.sh ..."
+  echo "export PATH=\$PATH:$BUILD_DIR/bin" > $BUILD_DIR/.profile.d/prometheus.sh
+fi
