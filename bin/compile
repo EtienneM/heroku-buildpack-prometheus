@@ -40,11 +40,11 @@ install_prometheus() {
   cp $CACHE_DIR/promtool-${PROMETHEUS_VERSION} $BUILD_DIR/bin/promtool
 }
 
-fetch_prometheus
-install_prometheus
-
 mkdir -p $CACHE_DIR
 export_env_dir "$ENV_DIR"
+
+fetch_prometheus
+install_prometheus
 
 # mkdir -p $BUILD_DIR/.profile.d
 #
